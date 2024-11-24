@@ -1,12 +1,14 @@
 package com.example.ctsproject.controller;
 
-import com.example.ctsproject.entity.Customer;
+import com.example.ctsproject.model.Customer;
 import com.example.ctsproject.exeception.CustomerAlreadyExistsException;
 import com.example.ctsproject.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 @RestController
+@CrossOrigin (origins = {"*"})
 @RequestMapping("/api/registration")
 public class CustomerController {
    @Autowired

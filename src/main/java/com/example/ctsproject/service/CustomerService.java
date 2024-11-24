@@ -1,7 +1,7 @@
 package com.example.ctsproject.service;
 
 
-import com.example.ctsproject.entity.Customer;
+import com.example.ctsproject.model.Customer;
 
 import com.example.ctsproject.exeception.CustomerAlreadyExistsException;
 
