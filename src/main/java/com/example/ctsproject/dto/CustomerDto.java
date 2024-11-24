@@ -1,4 +1,4 @@
-package com.example.pcsm.dto;
+package com.example.ctsproject.dto;
 
 public class CustomerDto {
     private String name;
