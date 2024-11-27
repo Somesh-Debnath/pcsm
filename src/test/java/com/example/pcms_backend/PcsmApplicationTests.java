@@ -1,4 +1,4 @@
-package com.example.ctsproject;
+package com.example.pcms_backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
