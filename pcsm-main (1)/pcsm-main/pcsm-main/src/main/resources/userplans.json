@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "UserPlanController API Collection",
+    "_postman_id": "12345-67890-abcdef",
+    "description": "Postman collection for UserPlanController API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Assign Plan to User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userId\": 1,\n  \"planId\": 1,\n  \"requestedDate\": \"2023-10-01\",\n  \"status\": \"active\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/user-plan/assign",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "user-plan",
+            "assign"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Plans",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/user-plan/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "user-plan",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Plan Status",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"alertRequired\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/user-plan/update-status/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "user-plan",
+            "update-status",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,15 +1,16 @@
 package com.pcms.pcms_backend.dto;
 
 public class LoginRequest {
-    private String fullName;
+    private String email;
     private String password;
 
-    public String getFullName() {
-        return fullName;
+    // Getters and setters
+    public String getEmail() {
+        return email;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -19,6 +20,5 @@ public class LoginRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 }

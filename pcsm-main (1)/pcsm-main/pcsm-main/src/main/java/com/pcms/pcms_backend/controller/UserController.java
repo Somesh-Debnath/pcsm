@@ -1,11 +1,14 @@
 package com.pcms.pcms_backend.controller;
 
-
+import com.pcms.pcms_backend.dto.UserDTO;
 import com.pcms.pcms_backend.entity.User;
 import com.pcms.pcms_backend.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -20,21 +23,26 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
-        userService.registerUser(user);
-        return ResponseEntity.ok("User registered successfully! Await admin approval.");
+        userService.saveUser(user);
+        return ResponseEntity.ok("User registration request received! Await admin approval.");
     }
 
-    @PostMapping("/approve/{id}")
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateUserStatus(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        userService.updateUserStatus(id, userDTO);
+        return ResponseEntity.ok("User status updated successfully!");
+    }
+
+    @GetMapping("/getAllUsers")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/getUser/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> approveUser(@PathVariable Long id) {
-        userService.approveUser(id);
-        return ResponseEntity.ok("User approved successfully!");
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
     }
-
-    @PostMapping("/reject/{id}")
-    public ResponseEntity<String> rejectUser(@PathVariable Long id) {
-        userService.rejectUser(id);
-        return ResponseEntity.ok("User rejected successfully!");
-    }
-
 }

@@ -1,8 +1,11 @@
 package com.pcms.pcms_backend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -13,15 +16,19 @@ public class User {
     private String fullName;
     @Column(unique = true) // Ensure phoneNumber is unique in the database
     private String phoneNumber;
+    @Column(unique = true) // Ensure email is unique in the database
     private String email;
     private String ssn;
     private String addressLine1;
     private String addressLine2;
     private String zipCode;
     private String password;
-    private boolean approved = false;
+    private String confirmPassword;
+    private String status;
+    private String rejectionComment;
 
-    private boolean is_approved = false; // New field for admin approval
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserPlans> userPlans;
 
     public Long getId() {
         return id;
@@ -87,22 +94,20 @@ public class User {
         this.zipCode = zipCode;
     }
 
-    public boolean isIs_approved() {
-        return is_approved;
+    public String getStatus() {
+        return status;
     }
 
-    public void setIs_approved(boolean is_approved) {
-        this.is_approved = is_approved;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public boolean isApproved() {
-        return approved;
+    public String getRejectionComment() {
+        return rejectionComment;
     }
 
-    public void setApproved(boolean is_approved) {
-        // TODO Auto-generated method stub
-        this.is_approved = is_approved;
-
+    public void setRejectionComment(String RejectionComment) {
+        this.rejectionComment = RejectionComment;
     }
 
     public String getPassword() {
@@ -113,5 +118,11 @@ public class User {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }

@@ -1,6 +1,5 @@
 package com.pcms.pcms_backend.controller;
 
-
 import com.pcms.pcms_backend.entity.Plans;
 import com.pcms.pcms_backend.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,51 +11,40 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-@RequestMapping("/api/plans")
+@RequestMapping("/api/plan")
 public class PlansController {
 
-    private final PlanService planService;
+    @Autowired
+    private PlanService planService;
 
-    public PlansController(PlanService planService) {
-        this.planService = planService;
+    @PostMapping("/create")
+    public ResponseEntity<Plans> createPlan(@RequestBody Plans plan) {
+        Plans createdPlan = planService.createPlan(plan);
+        return new ResponseEntity<>(createdPlan, HttpStatus.OK);
     }
 
-    @PostMapping("/addPlan")
-    public ResponseEntity<Plans> createPlans(@RequestBody Plans plans) {
-        Plans plans2 = planService.addPlans(plans);
-        return new ResponseEntity<Plans>(plans2, HttpStatus.OK);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Plans> updatePlan(@PathVariable int id, @RequestBody Plans plan) {
+        Plans updatedPlan = planService.updatePlan(id, plan);
+        return new ResponseEntity<>(updatedPlan, HttpStatus.OK);
     }
 
-    @GetMapping("/getPlan/{planId}")
-    public ResponseEntity<Plans> getPlanById(@PathVariable Long planId) {
-        Plans plan = planService.getPlanById(planId);
-        if (plan != null) {
-            return new ResponseEntity<>(plan, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PutMapping("/updatePlan/{planId}")
-    public ResponseEntity<Plans> updatePlan(
-            @PathVariable Long planId,
-            @RequestBody Plans updatedPlan) {
-        Plans updated = planService.updatePlan(planId, updatedPlan);
-        if (updated != null) {
-            return new ResponseEntity<>(updated, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/location/{location}")
+    public ResponseEntity<List<Plans>> getPlansByLocation(@PathVariable String location) {
+        List<Plans> plans = planService.getPlansByLocation(location);
+        return new ResponseEntity<>(plans, HttpStatus.OK);
     }
 
     @GetMapping("/getAllPlans")
     public ResponseEntity<List<Plans>> getAllPlans() {
-        return new ResponseEntity<>(planService.getAllPlans(), HttpStatus.OK);
+        System.out.println("Get all plans");
+        List<Plans> plans = planService.getAllPlans();
+        return new ResponseEntity<>(plans, HttpStatus.OK);
     }
 
-    @DeleteMapping("/deletePlan/{planId}")
-    public ResponseEntity<Void> deletePlanById(@PathVariable Long planId) {
-        planService.deletePlanById(planId);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deletePlan(@PathVariable int id) {
+        planService.deletePlan(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
