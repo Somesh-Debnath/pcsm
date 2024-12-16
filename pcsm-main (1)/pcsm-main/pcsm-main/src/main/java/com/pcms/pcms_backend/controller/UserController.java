@@ -39,10 +39,10 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/getUser/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
+    @GetMapping("/getUser/{email}")
+    //@PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<User> getUserById(@PathVariable String email) {
+        User user = userService.getUserById(email);
         return ResponseEntity.ok(user);
     }
 }
