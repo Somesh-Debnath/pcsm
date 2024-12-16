@@ -42,7 +42,7 @@ public class PlansController {
         return new ResponseEntity<>(plans, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PutMapping("/deletePlan/{id}")
     public ResponseEntity<Void> deletePlan(@PathVariable int id) {
         planService.deletePlan(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
