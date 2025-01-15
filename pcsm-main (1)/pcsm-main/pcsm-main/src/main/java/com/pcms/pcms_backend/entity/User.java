@@ -1,7 +1,6 @@
 package com.pcms.pcms_backend.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 

@@ -3,9 +3,7 @@ package com.pcms.pcms_backend.controller;
 import com.pcms.pcms_backend.dto.UserDTO;
 import com.pcms.pcms_backend.entity.User;
 import com.pcms.pcms_backend.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

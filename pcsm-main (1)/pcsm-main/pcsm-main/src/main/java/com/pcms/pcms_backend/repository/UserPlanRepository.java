@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface UserPlanRepository extends JpaRepository<UserPlans, Integer> {
     List<UserPlans> findByUserId(Long userId);
+
     List<UserPlans> findByAutoTerminatedFalse();
 }

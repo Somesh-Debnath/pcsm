@@ -1,6 +1,5 @@
 package com.pcms.pcms_backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity

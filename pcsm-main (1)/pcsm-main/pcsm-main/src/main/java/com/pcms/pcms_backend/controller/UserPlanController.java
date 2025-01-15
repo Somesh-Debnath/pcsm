@@ -31,7 +31,7 @@ public class UserPlanController {
 
     @PutMapping("/update-status/{id}")
     public ResponseEntity<UserPlans> updateStatus(@PathVariable int id, @RequestBody UserPlans userPlan) {
-        userPlanService.updateStatusToApproved(id);
+        userPlanService.updateStatus(id, userPlan.getStatus());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
