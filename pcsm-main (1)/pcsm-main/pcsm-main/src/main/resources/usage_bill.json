@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "UsageBill API",
+    "_postman_id": "12345-67890-abcdef",
+    "description": "Collection for UsageBill API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Calculate and Store Bill",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "userPlanId",
+              "value": "1",
+              "type": "text"
+            },
+            {
+              "key": "from",
+              "value": "2023-01-01",
+              "type": "text"
+            },
+            {
+              "key": "to",
+              "value": "2023-01-31",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/usage/calculate",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "usage",
+            "calculate"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Bill Breakdown",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/usage/breakdown/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "usage",
+            "breakdown",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Cumulative Bill",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/usage/cumulative/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "usage",
+            "cumulative",
+            "1"
+          ]
+        }
+      }
+    }
+  ]
+}

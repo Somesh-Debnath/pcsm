@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Plans {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int planId;
 
     private String planName;
@@ -22,18 +22,17 @@ public class Plans {
     @JoinColumn(name = "userPlanId")
     private UserPlans userPlans;
 
+    public Plans() {
+        // Default constructor
+    }
 
-    public Plans(int planId, String planName, String location, double price, String description) {
-        super();
-        this.planId = planId;
+    public Plans(String planName, String location, double price, String description, String status, UserPlans userPlans) {
         this.planName = planName;
         this.location = location;
         this.price = price;
         this.description = description;
-    }
-
-    public Plans() {
-        super();
+        this.status = status;
+        this.userPlans = userPlans;
     }
 
     public int getPlanId() {
@@ -87,4 +86,11 @@ public class Plans {
         this.description = description;
     }
 
+    public UserPlans getUserPlans() {
+        return userPlans;
+    }
+
+    public void setUserPlans(UserPlans userPlans) {
+        this.userPlans = userPlans;
+    }
 }

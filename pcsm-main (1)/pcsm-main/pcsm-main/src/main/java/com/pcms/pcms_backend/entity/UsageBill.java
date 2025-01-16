@@ -4,15 +4,16 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "usage_data")
-public class Usage {
+public class UsageBill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long usageBillId;
+    private Integer usageBillId;
 
-    private Long usageAmount;
+    @Column(nullable = false)
+    private Integer usageAmount;
 
-    private Long billAmount;
+    @Column(nullable = false)
+    private double billAmount;
 
     @Temporal(TemporalType.DATE)
     private Date usageDate;
@@ -23,28 +24,33 @@ public class Usage {
 
     // Getters and setters
 
-    public Long getUsageBillId() {
+    public Integer getUsageBillId() {
         return usageBillId;
     }
 
-    public void setUsageBillId(Long usageBillId) {
+    public void setUsageBillId(Integer usageBillId) {
         this.usageBillId = usageBillId;
     }
 
-
-    public Long getUsageAmount() {
+    public Integer getUsageAmount() {
         return usageAmount;
     }
 
-    public void setUsageAmount(Long usageAmount) {
+    public void setUsageAmount(Integer usageAmount) {
+        if (usageAmount < 0) {
+            throw new IllegalArgumentException("UsageAmount should be greater than or equal to 0");
+        }
         this.usageAmount = usageAmount;
     }
 
-    public Long getBillAmount() {
+    public double getBillAmount() {
         return billAmount;
     }
 
-    public void setBillAmount(Long billAmount) {
+    public void setBillAmount(double billAmount) {
+        if (billAmount < 0) {
+            throw new IllegalArgumentException("BillAmount should be greater than or equal to 0");
+        }
         this.billAmount = billAmount;
     }
 
@@ -62,16 +68,5 @@ public class Usage {
 
     public void setUserPlans(UserPlans userPlans) {
         this.userPlans = userPlans;
-    }
-
-    public Usage(Long usageBillId, Long usageAmount, Long billAmount, Date usageDate, UserPlans userPlans) {
-        this.usageBillId = usageBillId;
-        this.usageAmount = usageAmount;
-        this.billAmount = billAmount;
-        this.usageDate = usageDate;
-        this.userPlans = userPlans;
-    }
-
-    public Usage() {
     }
 }
